@@ -6,7 +6,7 @@ const filemanagerMiddleware = require("@opuscapita/filemanager-server").middlewa
 const logger = require("@opuscapita/filemanager-server").logger;
 
 const config = {
-  fsRoot: process.env.STORAGE || path.resolve(__dirname, "../storage"),
+  fsRoot: process.env.STORAGE || path.resolve(__dirname, ".."),
   rootName: "Disk",
 };
 
