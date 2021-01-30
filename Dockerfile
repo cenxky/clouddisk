@@ -12,7 +12,7 @@ RUN rm -rf '/var/cache/apk/*' '/tmp/*'
 ENV NODE_ENV="production"
 ENV PORT="80"
 ENV APP_PATH="/clouddisk"
-ENV STORAGE="/clouddisk/storage"
+ENV STORAGE="/data"
 
 # copy code
 RUN mkdir -p $APP_PATH

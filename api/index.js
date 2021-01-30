@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const compression = require("compression");
 const express = require("express");
+const morgan = require('morgan');
 const filemanagerMiddleware = require("@opuscapita/filemanager-server").middleware;
 const logger = require("@opuscapita/filemanager-server").logger;
 
@@ -15,6 +16,7 @@ const host = process.env.HOST || "0.0.0.0";
 const port = process.env.PORT || "7000";
 
 app.use(compression());
+app.use(morgan('combined'));
 app.use(function(req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   next();
