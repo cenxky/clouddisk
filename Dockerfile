@@ -2,6 +2,7 @@ FROM node:14.15-alpine
 MAINTAINER cenxky(cenxky@gmail.com)
 
 # apt install
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 RUN apk --update add build-base openssl libc-dev linux-headers tzdata yarn nginx certbot certbot-nginx
 
 # remove default config and apk cache
