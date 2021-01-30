@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { FileManager, FileNavigator } from "@opuscapita/react-filemanager";
+import connectorNodeV1 from "@opuscapita/react-filemanager-connector-node-v1";
+import "./App.css"
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+const apiOptions = { ...connectorNodeV1.apiOptions, apiRoot: "/api" };
+
+const App = () => (
+  <div className="App">
+    <FileManager>
+      <FileNavigator
+        id="clouddisk"
+        api={connectorNodeV1.api}
+        apiOptions={apiOptions}
+        capabilities={connectorNodeV1.capabilities}
+        listViewLayout={connectorNodeV1.listViewLayout}
+        viewLayoutOptions={connectorNodeV1.viewLayoutOptions}
+        onResourceItemDoubleClick={({ event, number, rowData }) => console.log(event, number, rowData)}
+      />
+    </FileManager>
+  </div>
+);
 
 export default App;
