@@ -1,6 +1,6 @@
 import { FileManager, FileNavigator } from "@opuscapita/react-filemanager";
 import connectorNodeV1 from "@opuscapita/react-filemanager-connector-node-v1";
-import "./App.css"
+import "./App.scss"
 
 const apiOptions = { ...connectorNodeV1.apiOptions, apiRoot: "/api" };
 
