@@ -1,6 +1,6 @@
 {
   "name": "clouddisk",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "dependencies": {
     "@opuscapita/filemanager-server": "^1.1.4",
@@ -16,7 +16,10 @@
     "morgan": "^1.10.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-file-viewer": "^1.2.1",
+    "react-markdown": "^5.0.3",
     "react-scripts": "4.0.1",
+    "remark-gfm": "^1.0.0",
     "sass": "^1.32.5",
     "web-vitals": "^0.2.4"
   },

@@ -2,6 +2,11 @@
 
 Clouddisk is for setup your own cloud disk on your server.
 
+- Support to management files
+- Support to 10+ file types preview
+- Support to upload files
+- Support to download files
+
 It's built by React and Express, and support you to manage your files by broswer from any device.
 
 ### Get started
@@ -9,7 +14,7 @@ It's built by React and Express, and support you to manage your files by broswer
 Run the docker container by pulling the image directly.
 
 ```sh
-docker run -d -p 7001:80 -v ~/:/data cenxky/clouddisk
+docker run -d -p 7001:80 -v ~/Downloads:/data cenxky/clouddisk
 ```
 
 Alternative, you can also use `git clone` to start development.

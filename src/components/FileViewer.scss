@@ -1,0 +1,42 @@
+.react-file-viewer-dialog {
+  color: #333;
+  text-align: left;
+  width: 330px;
+  height: 200px;
+
+  &.file-type-png,
+  &.file-type-jpg,
+  &.file-type-jpeg,
+  &.file-type-gif,
+  &.file-type-bmp {
+    width: 800px;
+    height: 600px;
+  }
+
+  &.file-type-csv,
+  &.file-type-xlsx,
+  &.file-type-pdf,
+  &.file-type-docx,
+  &.file-type-wexbim,
+  &.file-type-md {
+    width: 1000px;
+    height: 700px;
+  }
+
+  &.file-type-webm,
+  &.file-type-mp4 {
+    width: 600px;
+    height: 400px;
+  }
+
+  .pg-viewer-wrapper {
+    overflow-y: auto;
+  }
+  .unsupported-message {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+}
