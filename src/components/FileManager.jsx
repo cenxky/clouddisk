@@ -24,7 +24,7 @@ export default function(props) {
 
     const fileLink = `${apiOptions.apiRoot}/download?items=${id}`;
     const fileTypeMatches = name.match(/\.(\w+)$/);
-    const fileType = fileTypeMatches ? fileTypeMatches[1] : ".File";
+    const fileType = fileTypeMatches ? fileTypeMatches[1] : "File";
 
     showDialog({
       elementType: "Dialog",

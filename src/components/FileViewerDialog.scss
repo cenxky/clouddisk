@@ -1,5 +1,6 @@
 .react-file-viewer-dialog {
   color: #333;
+  font-size: 16px;
   text-align: left;
   width: 330px;
   height: 200px;
@@ -18,7 +19,7 @@
   &.file-type-pdf,
   &.file-type-docx,
   &.file-type-wexbim,
-  &.file-type-md {
+  &.file-type-text {
     width: 1000px;
     height: 700px;
   }
@@ -33,6 +34,7 @@
     overflow-y: auto;
   }
   .unsupported-message {
+    font-size: 24px;
     height: 100%;
     display: flex;
     align-items: center;

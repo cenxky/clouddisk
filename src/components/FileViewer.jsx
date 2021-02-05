@@ -1,15 +1,16 @@
 import React from "react";
 import ReactFileViewer from "react-file-viewer";
-import MarkdownViewer from "./viewers/MarkdownViewer";
+import TextFileViewer from "./viewers/TextFileViewer";
 
 export default class FileViewer extends ReactFileViewer {
-  withFetching(Comp) {
+  withFetching(Comp, defaultProps) {
     const viewerComp = new ReactFileViewer({ fileType: "csv" }).getDriver();
     const render = viewerComp.prototype.render;
 
     viewerComp.prototype.render = function() {
       if (this.state.data) {
-        return <Comp data={this.state.data} {...this.props} />;
+        const newProps = { ...defaultProps, ...this.props };
+        return <Comp data={this.state.data} {...newProps} />;
       } else {
         return render.apply(this);
       }
@@ -19,13 +20,12 @@ export default class FileViewer extends ReactFileViewer {
   }
 
   getDriver() {
-    switch (this.props.fileType) {
-      case "md": {
-        return this.withFetching(MarkdownViewer);
-      }
-      default: {
-        return super.getDriver();
-      }
+    const { fileTypeName } = this.props;
+
+    if (fileTypeName) {
+      return this.withFetching(TextFileViewer, { language: fileTypeName });
+    } else {
+      return super.getDriver();
     }
   }
 }

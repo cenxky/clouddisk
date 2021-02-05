@@ -3456,6 +3456,11 @@ classnames@^2.2.3, classnames@^2.2.5:
   resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
 
+classnames@^2.2.6:
+  version "2.2.6"
+  resolved "https://registry.npm.taobao.org/classnames/download/classnames-2.2.6.tgz?cache=0&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fclassnames%2Fdownload%2Fclassnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
+  integrity sha1-Q5Nb/90pHzJtrQogUwmzjQD2UM4=
+
 clean-css@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npm.taobao.org/clean-css/download/clean-css-4.2.3.tgz#507b5de7d97b48ee53d84adb0160ff6216380f78"
@@ -7786,6 +7791,18 @@ kuler@1.0.x:
   integrity sha1-73x4TzbJ+24W3TFQ0VJneysCKKY=
   dependencies:
     colornames "^1.1.1"
+
+lang-map@^0.4.0:
+  version "0.4.0"
+  resolved "https://registry.npm.taobao.org/lang-map/download/lang-map-0.4.0.tgz#de38b07783a0a7db0bc082c6c5ff69c56e354ab5"
+  integrity sha1-3jiwd4Ogp9sLwILGxf9pxW41SrU=
+  dependencies:
+    language-map "^1.1.0"
+
+language-map@^1.1.0:
+  version "1.4.0"
+  resolved "https://registry.npm.taobao.org/language-map/download/language-map-1.4.0.tgz#d41e51100274df587865819af6837b7dfbdfb220"
+  integrity sha1-1B5REAJ031h4ZYGa9oN7ffvfsiA=
 
 language-subtag-registry@~0.3.2:
   version "0.3.21"

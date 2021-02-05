@@ -1,5 +1,7 @@
 import React, { useEffect, useLayoutEffect, useRef } from "react";
 import FileViewer from "./FileViewer";
+import languageMapping from "lang-map/lib/lang.json";
+import cx from "classnames";
 import "./FileViewerDialog.scss";
 
 export default function(props) {
@@ -28,12 +30,21 @@ export default function(props) {
     };
   });
 
+  // It should be text file if fileType can be found in languageMapping
+  const [fileTypeName] = languageMapping[fileType] || [];
+
   return (
     <div
       ref={dialog}
-      className={`react-file-viewer-dialog file-type-${fileType}`}
+      className={cx("react-file-viewer-dialog", `file-type-${fileType}`, {
+        "file-type-text": fileTypeName,
+      })}
     >
-      <FileViewer fileType={fileType} filePath={filePath} />
+      <FileViewer
+        fileType={fileType}
+        filePath={filePath}
+        fileTypeName={fileTypeName}
+      />
     </div>
   );
 }
