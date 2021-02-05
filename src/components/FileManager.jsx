@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { FileManager, FileNavigator } from "@opuscapita/react-filemanager";
 import connectorNodeV1 from "@opuscapita/react-filemanager-connector-node-v1";
-import FileViewer from "./FileViewer";
+import FileViewerDialog from "./FileViewerDialog";
 import "./FileManager.scss";
 
 const apiOptions = { ...connectorNodeV1.apiOptions, apiRoot: "/api" };
@@ -15,21 +15,22 @@ export default function(props) {
   };
 
   const previewFile = ({ rowData }) => {
-    const { type, name, id } = rowData;
+    const { type, name, id, capabilities: permission } = rowData;
     const { showDialog, hideDialog } = helper.current;
 
-    if (type !== "file" || !showDialog) {
+    if (!permission.canDownload || type !== "file" || !showDialog) {
       return;
     }
 
-    const fileType = name.split(".").pop().toLowerCase();
     const fileLink = `${apiOptions.apiRoot}/download?items=${id}`;
+    const fileTypeMatches = name.match(/\.(\w+)$/);
+    const fileType = fileTypeMatches ? fileTypeMatches[1] : ".File";
 
     showDialog({
       elementType: "Dialog",
       elementProps: {
         children: (
-          <FileViewer
+          <FileViewerDialog
             fileType={fileType}
             filePath={fileLink}
             hideDialog={hideDialog}

@@ -4,7 +4,7 @@ import "./App.scss";
 
 export default function() {
   const { pathname } = new URL(window.location.href);
-  const filePathMatches = pathname.match(/\/\-(\/.+)/);
+  const filePathMatches = pathname.match(/\/-(\/.+)/);
   const filePath = filePathMatches && filePathMatches[1].replace(/\/$/, "");
   const initialResourceId = filePath ? btoa(filePath) : "";
 

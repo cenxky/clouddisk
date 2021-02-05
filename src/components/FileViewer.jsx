@@ -1,57 +1,31 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React from "react";
 import ReactFileViewer from "react-file-viewer";
-import MarkdownViewer from "./MarkdownViewer";
-import "./FileViewer.scss";
+import MarkdownViewer from "./viewers/MarkdownViewer";
 
-class FileViewer extends ReactFileViewer {
-  constructor(props) {
-    super(props);
+export default class FileViewer extends ReactFileViewer {
+  withFetching(Comp) {
+    const viewerComp = new ReactFileViewer({ fileType: "csv" }).getDriver();
+    const render = viewerComp.prototype.render;
+
+    viewerComp.prototype.render = function() {
+      if (this.state.data) {
+        return <Comp data={this.state.data} {...this.props} />;
+      } else {
+        return render.apply(this);
+      }
+    };
+
+    return viewerComp;
   }
 
   getDriver() {
     switch (this.props.fileType) {
       case "md": {
-        return MarkdownViewer;
+        return this.withFetching(MarkdownViewer);
       }
       default: {
         return super.getDriver();
       }
     }
   }
-}
-
-export default function(props) {
-  const { fileType, filePath, hideDialog } = props;
-  const dialog = useRef();
-
-  useLayoutEffect(() => {
-    if (dialog.current) dialog.current.parentNode.style.padding = 0;
-  });
-
-  useEffect(() => {
-    const overlayElement = document.querySelector(
-      ".oc-fm--file-navigator__view-loading-overlay"
-    );
-
-    const hideDialogByEvent = ({ key, target }) => {
-      if (key === "Escape" || (!key && target === overlayElement)) hideDialog();
-    };
-
-    document.addEventListener("keydown", hideDialogByEvent);
-    overlayElement.addEventListener("click", hideDialogByEvent);
-
-    return () => {
-      document.removeEventListener("keydown", hideDialogByEvent);
-      overlayElement.removeEventListener("click", hideDialogByEvent);
-    };
-  });
-
-  return (
-    <div
-      ref={dialog}
-      className={`react-file-viewer-dialog file-type-${fileType}`}
-    >
-      <FileViewer fileType={fileType} filePath={filePath} />
-    </div>
-  );
 }
