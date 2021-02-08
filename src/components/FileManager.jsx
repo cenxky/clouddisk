@@ -76,24 +76,29 @@ export default function(props) {
       return;
     }
 
-    const inputClick = (event) => {
-      event.preventDefault();
+    acceptedFiles.forEach((file) => {
+      const inputClick = (event) => {
+        const { target } = event;
 
-      const { target } = event;
-      if (target.tagName == "INPUT" && target.parentNode === document.body) {
-        target.files = buildFileList(acceptedFiles);
-        helper.current.uploadFiles();
-        target.value = null; // Clear input files
-      }
-    };
+        if (target.tagName == "INPUT" && target.parentNode === document.body) {
+          event.preventDefault();
 
-    document.addEventListener("click", inputClick);
+          target.files = buildFileList([file]);
+          helper.current.uploadFiles();
 
-    // Start uploading
-    action.handler();
+          // Clear input files
+          target.value = null;
+        }
+      };
 
-    // Remove inputClick listener
-    document.removeEventListener("click", inputClick);
+      document.addEventListener("click", inputClick);
+
+      // Start uploading
+      action.handler();
+
+      // Remove inputClick listener
+      document.removeEventListener("click", inputClick);
+    });
   }, []);
 
   const { getRootProps, isDragActive } = useDropzone({ onDrop });
